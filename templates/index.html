@@ -20,7 +20,7 @@
         .ad-avatar {
             width: 100px;
             height: 100px;
-            border-radius: 50%;
+            border-radius: 10px;
             margin-right: 20px;
             object-fit: cover;
         }
@@ -68,20 +68,10 @@
         }
         .ad-image {
             max-width: 100%;
-            height: auto;
+            height: 200px;
+            object-fit: cover;
             margin-bottom: 10px;
-        }
-        .admin-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #bbd5e7;
-            color: white;
-            text-decoration: none;
             border-radius: 5px;
-        }
-        .admin-button:hover {
-            background-color: #032242;
         }
     </style>
 </head>
@@ -93,7 +83,7 @@
         {% if session.user_id %}
             <p>Привет, {{ session.user_name }}! <a href="{{ url_for('logout') }}">Выйти</a></p>
             {% if session.role == 'admin' %}
-                <a href="{{ url_for('admin_users') }}" class="admin-button">Управление пользователями</a>
+                <p><a href="{{ url_for('admin_users') }}">Управление пользователями</a></p>
             {% endif %}
         {% else %}
             <p>
@@ -108,7 +98,7 @@
         <div class="ad-container">
             <!-- Аватар пользователя -->
             {% if ad.author_avatar %}
-                <img src="{{ url_for('static', filename=ad.author_avatar) }}" alt="Аватар автора" class="ad-avatar">
+                <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '')) }}" alt="Аватар автора" class="ad-avatar">
             {% else %}
                 <img src="{{ url_for('static', filename='uploads/default_avatar.png') }}" alt="Аватар по умолчанию" class="ad-avatar">
             {% endif %}
@@ -117,7 +107,7 @@
                 <div class="ad-title">{{ ad.title }}</div>
                 <div class="ad-text">{{ ad.text }}</div>
                 {% if ad.image %}
-                    <img src="{{ url_for('static', filename=ad.image) }}" alt="Фото объявления" class="ad-image">
+                    <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
                 {% endif %}
                 <div class="ad-info">
                     <p>Автор: {{ ad.author_name }}</p>
@@ -126,14 +116,14 @@
                     {% endif %}
                     <p>Дата создания: {{ ad.created_at }}</p>
                 </div>
-                <div class="ad-actions">
-                    {% if session.user_id == ad.author_id or session.role == 'admin' %}
+                {% if session.user_id == ad.author_id or session.role == 'admin' %}
+                    <div class="ad-actions">
                         <a href="{{ url_for('edit_ad', ad_id=ad.id) }}">Редактировать</a>
                         <form action="{{ url_for('delete_ad', ad_id=ad.id) }}" method="post" style="display:inline;">
                             <button type="submit">Удалить</button>
                         </form>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

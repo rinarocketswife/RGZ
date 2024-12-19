@@ -79,7 +79,7 @@ def register():
     avatar_path = None
     if avatar and allowed_file(avatar.filename):
         filename = secure_filename(avatar.filename)
-        avatar_path = os.path.join(UPLOAD_FOLDER, filename).replace('\\', '/')
+        avatar_path = os.path.join('static', 'uploads', filename).replace('\\', '/')
         avatar.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
     if not (login and password and name and email):
@@ -163,7 +163,7 @@ def create_ad():
     image_path = None
     if image and allowed_file(image.filename):
         filename = secure_filename(image.filename)
-        image_path = os.path.join(UPLOAD_FOLDER, filename).replace('\\', '/')
+        image_path = os.path.join('static', 'uploads', filename).replace('\\', '/')
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
     conn, cur = db_connect()
@@ -202,7 +202,7 @@ def edit_ad(ad_id):
 
     title = request.form.get('title')
     text = request.form.get('text')
-    image = request.files.get('image')
+    image = request.files.get('image')  # Получаем загруженное изображение
 
     if not (title and text):
         return render_template('edit_ad.html', ad=ad, error='Заполните все поля')
@@ -211,7 +211,7 @@ def edit_ad(ad_id):
     image_path = ad['image']
     if image and allowed_file(image.filename):
         filename = secure_filename(image.filename)
-        image_path = os.path.join(UPLOAD_FOLDER, filename).replace('\\', '/')
+        image_path = os.path.join('uploads', filename).replace('\\', '/')
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
     conn, cur = db_connect()
