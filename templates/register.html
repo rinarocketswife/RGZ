@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>Регистрация</title>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Регистрация</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="login">Логин:</label>
+                <input type="text" id="login" name="login" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="about">О себе:</label>
+                <textarea id="about" name="about"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="avatar">Аватар:</label>
+                <input type="file" id="avatar" name="avatar">
+            </div>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+</body>
+</html>
