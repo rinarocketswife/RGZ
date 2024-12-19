@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>Вход</title>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Вход</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="login">Логин:</label>
+                <input type="text" id="login" name="login" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Войти</button>
+        </form>
+        <p>Еще не зарегистрированы? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a></p>
+    </div>
+</body>
+</html>
