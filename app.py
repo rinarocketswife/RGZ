@@ -4,9 +4,16 @@ from psycopg2.extras import RealDictCursor
 from werkzeug.utils import secure_filename
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
+import sqlite3
+from os import path
 
 app = Flask(__name__)
-app.secret_key = 'секретно-секретный-секрет'
+
+# Устанавливаем DB_TYPE в 'sqlite'
+app.config['DB_TYPE'] = 'sqlite'
+
+# Остальные настройки приложения
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секретно-секретный секрет')
 
 # Настройка загрузки файлов
 UPLOAD_FOLDER = 'static/uploads'
@@ -23,13 +30,10 @@ def is_admin():
 
 # Функция для подключения к базе данных
 def db_connect():
-    conn = psycopg2.connect(
-        host='127.0.0.1',
-        database='rgz_web',
-        user='RGZ_WEB',
-        password='123'
-    )
-    cur = conn.cursor(cursor_factory=RealDictCursor)
+    db_path = '/home/irinaproskuryakova/RGZ/database.db'
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row 
+    cur = conn.cursor()
     return conn, cur
 
 # Функция для закрытия соединения с базой данных
