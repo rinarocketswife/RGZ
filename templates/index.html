@@ -8,10 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать на наш сайт!</h1>
+        <h1>Добро пожаловать на доску объявлений!</h1>
         <nav>
             <ul>
-                <li><a href="{{ url_for('index') }}">Главная</a></li>
                 {% if session.user_id %}
                     <li>Привет, {{ session.user_name }}!</li>
                     <li><a href="{{ url_for('logout') }}">Выйти</a></li>
@@ -62,7 +61,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 Все права защищены.</p>
+        <p>&copy; Ирина Проскурякова. 2024</p>
     </footer>
 </body>
 </html>
