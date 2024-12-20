@@ -42,7 +42,7 @@ def db_close(conn, cur):
 @app.route('/')
 def index():
     conn, cur = db_connect()
-    cur.execute("SELECT * FROM advertisements ORDER BY created_at DESC;")
+    cur.execute("SELECT * FROM advertisements ORDER BY author_id DESC;")
     ads = cur.fetchall()
     db_close(conn, cur)
 
