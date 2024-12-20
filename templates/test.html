@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестовая страница</title>
+</head>
+<body>
+    <h1>Тестовая страница</h1>
+    {% for ad in ads %}
+        <div>
+            <h2>{{ ad.title }}</h2>
+            <p>{{ ad.text }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
