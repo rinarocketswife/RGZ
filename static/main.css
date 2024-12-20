@@ -53,6 +53,73 @@ h2 {
     gap: 20px;
 }
 
+.ad {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px); /* Для отображения 3 объявлений в ряд */
+    box-sizing: border-box;
+}
+
+.ad-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.ad-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Делаем аватар круглым */
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.ad-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Масштабируем изображение, чтобы оно заполнило круг */
+}
+
+.ad h3 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.ad p {
+    margin: 5px 0;
+}
+
+.ad-image {
+    width: 100%;
+    height: 200px; /* Фиксированная высота для изображения объявления */
+    object-fit: cover; /* Масштабируем изображение, чтобы оно заполнило прямоугольник */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.ad-actions {
+    margin-top: 15px;
+}
+
+.ad-actions a, .ad-actions button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.ad-actions a:hover, .ad-actions button:hover {
+    background-color: #555;
+}
+
 footer {
     background-color: #333;
     color: #fff;

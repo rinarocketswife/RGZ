@@ -35,7 +35,7 @@
                     <div class="ad-header">
                         {% if ad.author_avatar %}
                             <div class="ad-avatar">
-                                <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '') if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
+                                <img src="{{ url_for('static', filename=ad.author_avatar if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
                             </div>
                         {% endif %}
                         <h3>{{ ad.title }}</h3>
