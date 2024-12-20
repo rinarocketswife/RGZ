@@ -42,7 +42,7 @@ def db_close(conn, cur):
 @app.route('/')
 def index():
     conn, cur = db_connect()
-    cur.execute("SELECT * FROM advertisements ORDER BY author_id DESC;")
+    cur.execute("SELECT * FROM advertisements ORDER BY created_at DESC;")
     ads = cur.fetchall()
     db_close(conn, cur)
 
@@ -325,21 +325,6 @@ def admin_delete_user(user_id):
 
     flash('Пользователь успешно удален', 'success')
     return redirect(url_for('admin_users'))
-
-@app.route('/test')
-def test():
-    conn, cur = db_connect()
-    cur.execute("SELECT * FROM advertisements ORDER BY created_at DESC;")
-    ads = cur.fetchall()
-    db_close(conn, cur)
-
-    # Преобразуем объекты sqlite3.Row в словари
-    ads = [dict(ad) for ad in ads]
-
-    # Отладочный вывод
-    print(ads)  # Вывод данных в консоль
-
-    return render_template('test.html', ads=ads)
 
 if __name__ == '__main__':
     # Создание папки для загрузки файлов, если она не существует
