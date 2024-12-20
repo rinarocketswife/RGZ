@@ -34,14 +34,14 @@
                     <h3>{{ ad.title }}</h3>
                     <p>{{ ad.text }}</p>
                     {% if ad.image %}
-                        <img src="{{ url_for('static', filename=ad.image) }}" alt="{{ ad.title }}" class="ad-image">
+                        <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
                     {% endif %}
                     <p>Автор: {{ ad.author_name }}</p>
                     {% if ad.author_email %}
                         <p>Email: {{ ad.author_email }}</p>
                     {% endif %}
                     {% if ad.author_avatar %}
-                        <img src="{{ url_for('static', filename=ad.author_avatar) }}" alt="{{ ad.author_name }}" class="avatar">
+                        <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '') if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
                     {% endif %}
                     {% if session.user_id and (session.user_id == ad.author_id or is_admin()) %}
                         <div class="ad-actions">
