@@ -33,16 +33,16 @@
             {% for ad in ads %}
                 <div class="ad">
                     <div class="ad-header">
-                        {% if ad.author_avatar %}
-                            <div class="ad-avatar">
-                                <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '') if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
-                            </div>
-                        {% endif %}
+                        <!-- Аватар пользователя -->
+                        <div class="ad-avatar">
+                            <img src="{{ url_for('static', filename=ad.author_avatar if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
+                        </div>
                         <h3>{{ ad.title }}</h3>
                     </div>
                     <p>{{ ad.text }}</p>
+                    <!-- Фото объявления -->
                     {% if ad.image %}
-                        <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
+                        <img src="{{ url_for('static', filename=ad.image) }}" alt="Фото объявления" class="ad-image">
                     {% endif %}
                     <p>Автор: {{ ad.author_name }}</p>
                     {% if ad.author_email %}
