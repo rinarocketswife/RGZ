@@ -66,7 +66,7 @@ def index():
         ad['author_email'] = user.get('email') if session.get('user_id') else None
         ad['author_avatar'] = user.get('avatar')  # Добавляем аватар пользователя
 
-    return render_template('index.html', ads=ads)
+    return render_template('index.html', ads=ads, is_admin=is_admin)  # Передаем is_admin в шаблон
 
 # Регистрация
 @app.route('/register', methods=['GET', 'POST'])
@@ -269,7 +269,7 @@ def admin_users():
     users = cur.fetchall()
     db_close(conn, cur)
 
-    return render_template('admin_users.html', users=users)
+    return render_template('admin_users.html', users=users, is_admin=is_admin)  # Передаем is_admin в шаблон
 
 @app.route('/admin/edit_user/<int:user_id>', methods=['GET', 'POST'])
 def admin_edit_user(user_id):
@@ -287,14 +287,14 @@ def admin_edit_user(user_id):
         return redirect(url_for('admin_users'))
 
     if request.method == 'GET':
-        return render_template('admin_edit_user.html', user=user)
+        return render_template('admin_edit_user.html', user=user, is_admin=is_admin)  # Передаем is_admin в шаблон
 
     name = request.form.get('name')
     email = request.form.get('email')
     role = request.form.get('role')
 
     if not (name and email and role):
-        return render_template('admin_edit_user.html', user=user, error='Заполните все поля')
+        return render_template('admin_edit_user.html', user=user, error='Заполните все поля', is_admin=is_admin)  # Передаем is_admin в шаблон
 
     conn, cur = db_connect()
     cur.execute("""
