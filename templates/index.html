@@ -35,7 +35,6 @@
         .ad-text {
             font-size: 16px;
             margin-bottom: 10px;
-            display: block;
         }
         .ad-info {
             font-size: 14px;
@@ -106,7 +105,7 @@
 
             <div class="ad-content">
                 <div class="ad-title">{{ ad.title }}</div>
-                <div class="ad-text">{{ ad.text }}</div>
+                <div class="ad-text">{{ ad.text }}</div> <!-- Текст объявления -->
                 {% if ad.image %}
                     <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
                 {% endif %}
