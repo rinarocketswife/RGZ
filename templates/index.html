@@ -8,57 +8,61 @@
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать на наш сайт</h1>
+        <h1>Добро пожаловать на наш сайт!</h1>
         <nav>
             <ul>
-                <li><a href="/">Главная</a></li>
+                <li><a href="{{ url_for('index') }}">Главная</a></li>
                 {% if session.user_id %}
-                    <li><a href="/logout">Выйти</a></li>
-                    {% if is_admin %}
-                        <li><a href="/admin/users">Управление пользователями</a></li>
-                    {% endif %}
+                    <li>Привет, {{ session.user_name }}!</li> <!-- Отображаем имя пользователя -->
+                    <li><a href="{{ url_for('logout') }}">Выйти</a></li>
+                    <li><a href="{{ url_for('create_ad') }}">Создать объявление</a></li>
                 {% else %}
-                    <li><a href="/login">Войти</a></li>
-                    <li><a href="/register">Регистрация</a></li>
+                    <li><a href="{{ url_for('login') }}">Войти</a></li>
+                    <li><a href="{{ url_for('register') }}">Зарегистрироваться</a></li>
+                {% endif %}
+                {% if is_admin() %}
+                    <li><a href="{{ url_for('admin_users') }}">Управление пользователями</a></li>
                 {% endif %}
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Последние объявления</h2>
+        <h2>Объявления</h2>
         <div class="ads-container">
             {% for ad in ads %}
                 <div class="ad">
                     <div class="ad-header">
-                        <div class="ad-avatar">
-                            <img src="{{ ad.author_avatar }}" alt="Аватар пользователя">
-                        </div>
-                        <div>
-                            <h3>{{ ad.title }}</h3>
-                            <p>Автор: {{ ad.author_name }}</p>
-                            {% if ad.author_email %}
-                                <p>Email: {{ ad.author_email }}</p>
-                            {% endif %}
-                        </div>
+                        {% if ad.author_avatar %}
+                            <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '')) }}" alt="Аватар автора" class="ad-avatar">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='uploads/default_avatar.png') }}" alt="Аватар по умолчанию" class="ad-avatar">
+                        {% endif %}
+                        <h3>{{ ad.title }}</h3>
                     </div>
-                    <img class="ad-image" src="{{ ad.image }}" alt="Изображение объявления">
                     <p>{{ ad.text }}</p>
-                    <div class="ad-actions">
-                        {% if session.user_id == ad.author_id or is_admin %}
-                            <a href="/edit_ad/{{ ad.id }}">Редактировать</a>
-                            <form action="/delete_ad/{{ ad.id }}" method="POST" style="display:inline;">
+                    {% if ad.image %}
+                        <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
+                    {% endif %}
+                    <p>Автор: {{ ad.author_name }}</p>
+                    {% if ad.author_email %}
+                        <p>Email: {{ ad.author_email }}</p>
+                    {% endif %}
+                    {% if session.user_id and (session.user_id == ad.author_id or is_admin()) %}
+                        <div class="ad-actions">
+                            <a href="{{ url_for('edit_ad', ad_id=ad.id) }}">Редактировать</a>
+                            <form action="{{ url_for('delete_ad', ad_id=ad.id) }}" method="POST" style="display:inline;">
                                 <button type="submit">Удалить</button>
                             </form>
-                        {% endif %}
-                    </div>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 Все права защищены</p>
+        <p>&copy; 2023 Все права защищены.</p>
     </footer>
 </body>
 </html>
