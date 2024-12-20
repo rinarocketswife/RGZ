@@ -41,10 +41,6 @@ def db_close(conn, cur):
 # Главная страница
 @app.route('/')
 def index():
-    if not session.get('user_id'):
-        flash('Вы не авторизованы', 'error')
-        return redirect(url_for('login'))
-
     conn, cur = db_connect()
     cur.execute("SELECT * FROM advertisements ORDER BY created_at DESC;")
     ads = cur.fetchall()
@@ -55,7 +51,6 @@ def index():
 
     # Отладочный вывод
     print(ads)  # Вывод данных в консоль
-
 
     # Получение информации о пользователях для каждого объявления
     for ad in ads:
