@@ -2,43 +2,42 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Доска объявления</title>
+    <title>Доска объявлений</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <h1>Доска Объявления</h1>
-
-    <!-- Панель авторизации -->
-    <div class="auth-panel">
-        {% if session.user_id %}
-            <p>Привет, {{ session.user_name }}! <a href="{{ url_for('logout') }}">Выйти</a></p>
-            {% if session.role == 'admin' %}
-                <p><a href="{{ url_for('admin_users') }}">Управление пользователями</a></p>
-            {% endif %}
-        {% else %}
-            <p>
-                <a href="{{ url_for('login') }}">Войти</a> |
-                <a href="{{ url_for('register') }}">Зарегистрироваться</a>
-            </p>
-        {% endif %}
-    </div>
-
-    <!-- Список объявлений -->
-    {% for ad in ads %}
-        <div class="ad-container">
-            <!-- Аватар пользователя -->
-            {% if ad.author_avatar %}
-                <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '')) }}" alt="Аватар автора" class="ad-avatar">
-            {% else %}
-                <img src="{{ url_for('static', filename='uploads/default_avatar.png') }}" alt="Аватар по умолчанию" class="ad-avatar">
-            {% endif %}
-
-            <div class="ad-content">
-                <div class="ad-title">{{ ad.title }}</div>
-                <div class="ad-text">{{ ad.text }}</div> <!-- Текст объявления -->
-                {% if ad.image %}
-                    <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
+    <header>
+        <h1>Доска Объявлений</h1>
+        <div class="auth-panel">
+            {% if session.user_id %}
+                <p>Привет, {{ session.user_name }}! <a href="{{ url_for('logout') }}">Выйти</a></p>
+                {% if session.role == 'admin' %}
+                    <p><a href="{{ url_for('admin_users') }}">Управление пользователями</a></p>
                 {% endif %}
+            {% else %}
+                <p>
+                    <a href="{{ url_for('login') }}">Войти</a> |
+                    <a href="{{ url_for('register') }}">Зарегистрироваться</a>
+                </p>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% for ad in ads %}
+            <article class="ad-container">
+                <div class="ad-header">
+                    <div class="ad-avatar">
+                        <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '') if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
+                    </div>
+                    <div class="ad-title">{{ ad.title }}</div>
+                </div>
+                <div class="ad-content">
+                    <div class="ad-text">{{ ad.text }}</div>
+                    {% if ad.image %}
+                        <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
+                    {% endif %}
+                </div>
                 <div class="ad-info">
                     <p>Автор: {{ ad.author_name }}</p>
                     {% if session.user_id %}
@@ -54,13 +53,14 @@
                         </form>
                     </div>
                 {% endif %}
-            </div>
-        </div>
-    {% endfor %}
+            </article>
+        {% endfor %}
+    </main>
 
-    <!-- Кнопка создания объявления -->
-    {% if session.user_id %}
-        <a href="{{ url_for('create_ad') }}">Создать объявление</a>
-    {% endif %}
+    <footer>
+        {% if session.user_id %}
+            <a href="{{ url_for('create_ad') }}">Создать объявление</a>
+        {% endif %}
+    </footer>
 </body>
 </html>
