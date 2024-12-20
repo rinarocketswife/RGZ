@@ -140,32 +140,6 @@ button:hover {
     margin-top: 15px;
 }
 
-.ad-actions a,
-.ad-actions button {
-    padding: 8px 12px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.ad-actions a:hover,
-.ad-actions button:hover {
-    background-color: #0056b3;
-}
-
-.ad-actions .delete-button {
-    background-color: #dc3545;
-}
-
-.ad-actions .delete-button:hover {
-    background-color: #b02a37;
-}
-
 .auth-panel {
     margin-bottom: 20px;
     text-align: right;
