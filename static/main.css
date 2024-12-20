@@ -1,5 +1,3 @@
-/* main.css */
-
 /* Общие стили */
 body {
     font-family: Arial, sans-serif;
@@ -20,17 +18,23 @@ header h1 {
     margin: 0;
 }
 
-.auth-panel {
-    margin-top: 10px;
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
 }
 
-.auth-panel a {
-    color: #fff;
-    text-decoration: none;
+nav ul li {
+    display: inline;
     margin: 0 10px;
 }
 
-.auth-panel a:hover {
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
     text-decoration: underline;
 }
 
@@ -38,67 +42,58 @@ main {
     padding: 20px;
 }
 
+h2 {
+    margin-bottom: 20px;
+}
+
 /* Стили для объявлений */
-.ad-container {
+.ads-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ad {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 20px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px); /* Для отображения 3 объявлений в ряд */
+    box-sizing: border-box;
 }
 
-.ad-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.ad-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 15px;
-}
-
-.ad-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.ad-title {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.ad-content {
-    margin-bottom: 15px;
-}
-
-.ad-text {
+.ad h3 {
+    font-size: 1.2em;
     margin-bottom: 10px;
 }
 
-.ad-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-top: 10px;
+.ad p {
+    margin: 5px 0;
 }
 
-.ad-info {
-    font-size: 0.9em;
-    color: #666;
+.ad-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
 }
 
 .ad-actions {
     margin-top: 15px;
 }
 
-.edit-button, .delete-button {
+.ad-actions a, .ad-actions button {
     background-color: #333;
     color: #fff;
     border: none;
@@ -110,7 +105,7 @@ main {
     margin-right: 10px;
 }
 
-.edit-button:hover, .delete-button:hover {
+.ad-actions a:hover, .ad-actions button:hover {
     background-color: #555;
 }
 
@@ -124,11 +119,6 @@ footer {
     width: 100%;
 }
 
-footer a {
-    color: #fff;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
+footer p {
+    margin: 0;
 }
