@@ -29,6 +29,8 @@
             <!-- Аватар пользователя -->
             {% if ad.author_avatar %}
                 <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '')) }}" alt="Аватар автора" class="ad-avatar">
+            {% else %}
+                <img src="{{ url_for('static', filename='uploads/default_avatar.png') }}" alt="Аватар по умолчанию" class="ad-avatar">
             {% endif %}
 
             <div class="ad-content">
