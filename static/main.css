@@ -230,15 +230,11 @@ form {
 
 /* Футер */
 footer {
+    position: fixed;
+    bottom: 0;
     background: linear-gradient(135deg, #64b5f6, #42a5f5); /* Градиент для футера */
     color: #fff;
     text-align: center;
-    padding: 10px 20px;
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-footer p {
-    margin: 0;
-    font-size: 0.9em;
 }
