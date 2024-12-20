@@ -57,7 +57,7 @@ def index():
     # Получение информации о пользователях для каждого объявления
     for ad in ads:
         conn, cur = db_connect()
-        cur.execute("SELECT name, email, avatar FROM users WHERE id=%s;", (ad['author_id'],))
+        cur.execute("SELECT name, email, avatar FROM users WHERE id=?;", (ad['author_id'],))
         user = cur.fetchone()
         db_close(conn, cur)
         ad['author_name'] = user['name']
@@ -92,7 +92,7 @@ def register():
     conn, cur = db_connect()
 
     # Проверка, существует ли пользователь с таким логином или email
-    cur.execute("SELECT * FROM users WHERE login=%s OR email=%s;", (login, email))
+    cur.execute("SELECT * FROM users WHERE login=? OR email=?;", (login, email))
     existing_user = cur.fetchone()
     if existing_user:
         db_close(conn, cur)
@@ -104,7 +104,7 @@ def register():
     # Добавление нового пользователя в базу данных
     cur.execute("""
         INSERT INTO users (login, password, name, email, about, avatar)
-        VALUES (%s, %s, %s, %s, %s, %s);
+        VALUES (?, ?, ?, ?, ?, ?);
     """, (login, hashed_password, name, email, about, avatar_path))
 
     db_close(conn, cur)
@@ -124,7 +124,7 @@ def login():
 
     conn, cur = db_connect()
 
-    cur.execute("SELECT * FROM users WHERE login=%s;", (login,))
+    cur.execute("SELECT * FROM users WHERE login=?;", (login,))
     user = cur.fetchone()
 
     if not user or not check_password_hash(user['password'], password):
@@ -173,7 +173,7 @@ def create_ad():
     conn, cur = db_connect()
     cur.execute("""
         INSERT INTO advertisements (title, text, author_id, image)
-        VALUES (%s, %s, %s, %s);
+        VALUES (?, ?, ?, ?);
     """, (title, text, session['user_id'], image_path))
     db_close(conn, cur)
 
@@ -188,7 +188,7 @@ def edit_ad(ad_id):
         return redirect(url_for('login'))
 
     conn, cur = db_connect()
-    cur.execute("SELECT * FROM advertisements WHERE id=%s;", (ad_id,))
+    cur.execute("SELECT * FROM advertisements WHERE id=?;", (ad_id,))
     ad = cur.fetchone()
     db_close(conn, cur)
 
@@ -220,7 +220,7 @@ def edit_ad(ad_id):
 
     conn, cur = db_connect()
     cur.execute("""
-        UPDATE advertisements SET title=%s, text=%s, image=%s WHERE id=%s;
+        UPDATE advertisements SET title=?, text=?, image=? WHERE id=?;
     """, (title, text, image_path, ad_id))
     db_close(conn, cur)
 
@@ -235,7 +235,7 @@ def delete_ad(ad_id):
         return redirect(url_for('login'))
 
     conn, cur = db_connect()
-    cur.execute("SELECT * FROM advertisements WHERE id=%s;", (ad_id,))
+    cur.execute("SELECT * FROM advertisements WHERE id=?;", (ad_id,))
     ad = cur.fetchone()
 
     if not ad:
@@ -249,7 +249,7 @@ def delete_ad(ad_id):
         flash('У вас нет прав на удаление этого объявления', 'error')
         return redirect(url_for('index'))
 
-    cur.execute("DELETE FROM advertisements WHERE id=%s;", (ad_id,))
+    cur.execute("DELETE FROM advertisements WHERE id=?;", (ad_id,))
     db_close(conn, cur)
 
     flash('Объявление успешно удалено', 'success')
@@ -276,7 +276,7 @@ def admin_edit_user(user_id):
         return redirect(url_for('index'))
 
     conn, cur = db_connect()
-    cur.execute("SELECT * FROM users WHERE id=%s;", (user_id,))
+    cur.execute("SELECT * FROM users WHERE id=?;", (user_id,))
     user = cur.fetchone()
     db_close(conn, cur)
 
@@ -296,7 +296,7 @@ def admin_edit_user(user_id):
 
     conn, cur = db_connect()
     cur.execute("""
-        UPDATE users SET name=%s, email=%s, role=%s WHERE id=%s;
+        UPDATE users SET name=?, email=?, role=? WHERE id=?;
     """, (name, email, role, user_id))
     db_close(conn, cur)
 
@@ -310,7 +310,7 @@ def admin_delete_user(user_id):
         return redirect(url_for('index'))
 
     conn, cur = db_connect()
-    cur.execute("SELECT * FROM users WHERE id=%s;", (user_id,))
+    cur.execute("SELECT * FROM users WHERE id=?;", (user_id,))
     user = cur.fetchone()
 
     if not user:
@@ -318,7 +318,7 @@ def admin_delete_user(user_id):
         flash('Пользователь не найден', 'error')
         return redirect(url_for('admin_users'))
 
-    cur.execute("DELETE FROM users WHERE id=%s;", (user_id,))
+    cur.execute("DELETE FROM users WHERE id=?;", (user_id,))
     db_close(conn, cur)
 
     flash('Пользователь успешно удален', 'success')
