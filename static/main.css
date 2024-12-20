@@ -1,21 +1,25 @@
 /* Общие стили */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
     color: #333;
+    line-height: 1.6;
 }
 
 header {
-    background-color: #333;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
     color: #fff;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     margin: 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 nav ul {
@@ -26,24 +30,31 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    color: #ffcc00;
 }
 
 main {
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 h2 {
     margin-bottom: 20px;
+    font-size: 2em;
+    color: #4CAF50;
+    text-align: center;
 }
 
 /* Стили для объявлений */
@@ -51,20 +62,26 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .ad {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 20px); /* Для отображения 3 объявлений в ряд */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 400px; /* Минимальная высота для блоков объявлений */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ad:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .ad-header {
@@ -76,40 +93,45 @@ h2 {
 .ad-avatar {
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Делаем аватар круглым */
+    border-radius: 50%;
     overflow: hidden;
     margin-right: 15px;
+    border: 2px solid #4CAF50;
 }
 
 .ad-avatar img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Масштабируем изображение, чтобы оно заполнило круг */
+    object-fit: cover;
 }
 
 .ad h3 {
     font-size: 1.2em;
     margin: 0;
+    color: #4CAF50;
 }
 
 .ad p {
     margin: 5px 0;
+    color: #555;
 }
 
 .ad-image {
     width: 100%;
-    height: 200px; /* Фиксированная высота для изображения объявления */
-    object-fit: contain; /* Масштабируем изображение, чтобы оно вписывалось в рамку */
-    border-radius: 5px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
     margin-bottom: 10px;
 }
 
 .ad-actions {
     margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .ad-actions a, .ad-actions button {
-    background-color: #333;
+    background-color: #4CAF50;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -117,23 +139,25 @@ h2 {
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    margin-right: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .ad-actions a:hover, .ad-actions button:hover {
-    background-color: #555;
+    background-color: #45a049;
 }
 
 footer {
-    background-color: #333;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
     color: #fff;
     text-align: center;
     padding: 10px 20px;
     position: fixed;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer p {
     margin: 0;
+    font-size: 0.9em;
 }
