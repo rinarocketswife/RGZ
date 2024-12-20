@@ -46,12 +46,12 @@
                     <p>Дата создания: {{ ad.created_at }}</p>
                 </div>
                 {% if session.user_id == ad.author_id or session.role == 'admin' %}
-                    <div class="ad-actions">
-                        <a href="{{ url_for('edit_ad', ad_id=ad.id) }}">Редактировать</a>
-                        <form action="{{ url_for('delete_ad', ad_id=ad.id) }}" method="post" style="display:inline;">
-                            <button type="submit">Удалить</button>
-                        </form>
-                    </div>
+                <div class="ad-actions">
+                    <a href="{{ url_for('edit_ad', ad_id=ad.id) }}" class="edit-button">Редактировать</a>
+                    <form action="{{ url_for('delete_ad', ad_id=ad.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="delete-button">Удалить</button>
+                    </form>
+                </div>
                 {% endif %}
             </article>
         {% endfor %}

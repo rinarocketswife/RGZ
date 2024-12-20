@@ -1,28 +1,31 @@
 /* Общие стили */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     color: #333;
+    line-height: 1.6;
 }
 
 /* Стили для форм */
 .form-container {
     text-align: center;
+    margin: 50px auto;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
 }
 
 form {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     text-align: left;
@@ -30,14 +33,15 @@ form {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-size: 14px;
+    color: #555;
 }
 
 input[type="text"],
@@ -46,21 +50,33 @@ input[type="email"],
 textarea,
 select {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -69,70 +85,93 @@ button:hover {
 
 /* Стили для объявлений */
 .ad-container {
-    border: 2px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px;
     margin-bottom: 20px;
-    background-color: #f9f9f9;
+    background-color: #fff;
     display: flex;
     align-items: flex-start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .ad-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     margin-right: 20px;
     object-fit: cover;
+    border: 2px solid #ddd;
 }
 
 .ad-content {
-    display: block !important;
     flex: 1;
 }
 
 .ad-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #333;
 }
 
 .ad-text {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #555;
 }
 
 .ad-info {
     font-size: 14px;
-    color: #555;
+    color: #777;
+    margin-bottom: 15px;
 }
 
 .ad-actions {
-    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-.ad-actions a, .ad-actions button {
-    margin-right: 10px;
+.ad-actions a,
+.ad-actions button {
+    padding: 8px 12px;
     text-decoration: none;
-    color: #007bff;
-    background: none;
+    color: #fff;
+    background-color: #007bff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
-.ad-actions a:hover, .ad-actions button:hover {
-    text-decoration: underline;
+.ad-actions a:hover,
+.ad-actions button:hover {
+    background-color: #0056b3;
+}
+
+.ad-actions .delete-button {
+    background-color: #dc3545;
+}
+
+.ad-actions .delete-button:hover {
+    background-color: #b02a37;
 }
 
 .auth-panel {
     margin-bottom: 20px;
+    text-align: right;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
 }
 
 .auth-panel a {
-    margin-right: 10px;
+    margin-left: 15px;
     text-decoration: none;
     color: #007bff;
+    font-size: 14px;
 }
 
 .auth-panel a:hover {
@@ -141,10 +180,11 @@ button:hover {
 
 .ad-image {
     max-width: 100%;
-    height: 200px;
+    height: auto;
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Стили для страницы управления пользователями */
@@ -153,11 +193,13 @@ button:hover {
     border-collapse: collapse;
     margin-bottom: 20px;
     font-size: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .admin-users-table th,
 .admin-users-table td {
-    padding: 10px;
+    padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
@@ -165,6 +207,7 @@ button:hover {
 .admin-users-table th {
     background-color: #f2f2f2;
     font-weight: bold;
+    color: #333;
 }
 
 .admin-users-table tr:hover {
@@ -173,13 +216,13 @@ button:hover {
 
 .admin-users-table .actions {
     display: flex;
-    align-items: center;
+    gap: 10px;
 }
 
 .admin-users-table .actions .edit-link {
     text-decoration: none;
     color: #007bff;
-    margin-right: 10px;
+    font-size: 14px;
 }
 
 .admin-users-table .actions .delete-button {
@@ -187,7 +230,7 @@ button:hover {
     border: none;
     color: #dc3545;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .admin-users-table .actions .delete-button:hover {
