@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-import psycopg2
-from psycopg2.extras import RealDictCursor
+import sqlite3
 from werkzeug.utils import secure_filename
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
-import sqlite3
-from os import path
 
 app = Flask(__name__)
 
@@ -27,12 +24,11 @@ def allowed_file(filename):
 def is_admin():
     return session.get('user_id') and session.get('role') == 'admin'
 
-
 # Функция для подключения к базе данных
 def db_connect():
     db_path = '/home/irinaproskuryakova/RGZ/database.db'
     conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row 
+    conn.row_factory = sqlite3.Row  # Используем sqlite3.Row для доступа к данным через ключи
     cur = conn.cursor()
     return conn, cur
 
@@ -42,10 +38,6 @@ def db_close(conn, cur):
     cur.close()
     conn.close()
 
-# Проверка, является ли текущий пользователь администратором
-def is_admin():
-    return session.get('user_id') and session.get('role') == 'admin'
-
 # Главная страница
 @app.route('/')
 def index():
@@ -54,15 +46,22 @@ def index():
     ads = cur.fetchall()
     db_close(conn, cur)
 
+    # Преобразуем объекты sqlite3.Row в словари
+    ads = [dict(ad) for ad in ads]
+
     # Получение информации о пользователях для каждого объявления
     for ad in ads:
         conn, cur = db_connect()
         cur.execute("SELECT name, email, avatar FROM users WHERE id=?;", (ad['author_id'],))
         user = cur.fetchone()
         db_close(conn, cur)
-        ad['author_name'] = user['name']
-        ad['author_email'] = user['email'] if session.get('user_id') else None
-        ad['author_avatar'] = user['avatar']  # Добавляем аватар пользователя
+
+        # Преобразуем объект sqlite3.Row в словарь
+        user = dict(user) if user else {}
+
+        ad['author_name'] = user.get('name', 'Unknown')
+        ad['author_email'] = user.get('email') if session.get('user_id') else None
+        ad['author_avatar'] = user.get('avatar')  # Добавляем аватар пользователя
 
     return render_template('index.html', ads=ads)
 
