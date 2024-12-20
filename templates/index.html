@@ -3,77 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Доска объявления</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .ad-container {
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            display: flex;
-            align-items: flex-start;
-        }
-        .ad-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            margin-right: 20px;
-            object-fit: cover;
-        }
-        .ad-content {
-            flex: 1;
-        }
-        .ad-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .ad-text {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .ad-info {
-            font-size: 14px;
-            color: #555;
-        }
-        .ad-actions {
-            margin-top: 10px;
-        }
-        .ad-actions a, .ad-actions button {
-            margin-right: 10px;
-            text-decoration: none;
-            color: #007bff;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .ad-actions a:hover, .ad-actions button:hover {
-            text-decoration: underline;
-        }
-        .auth-panel {
-            margin-bottom: 20px;
-        }
-        .auth-panel a {
-            margin-right: 10px;
-            text-decoration: none;
-            color: #007bff;
-        }
-        .auth-panel a:hover {
-            text-decoration: underline;
-        }
-        .ad-image {
-            max-width: 100%;
-            height: 200px;
-            object-fit: cover;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
     <h1>Доска Объявления</h1>
