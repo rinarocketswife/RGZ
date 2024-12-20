@@ -3,13 +3,13 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+    background: linear-gradient(135deg, #e6f7ff, #cceeff); /* Нежно-голубой градиент */
     color: #333;
     line-height: 1.6;
 }
 
 header {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
+    background: linear-gradient(135deg, #64b5f6, #42a5f5); /* Градиент для шапки */
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -41,7 +41,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #ffcc00;
+    color: #bbdefb; /* Светло-голубой при наведении */
 }
 
 main {
@@ -53,7 +53,7 @@ main {
 h2 {
     margin-bottom: 20px;
     font-size: 2em;
-    color: #4CAF50;
+    color: #64b5f6; /* Нежно-голубой цвет для заголовков */
     text-align: center;
 }
 
@@ -67,7 +67,7 @@ h2 {
 
 .ad {
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #bbdefb; /* Светло-голубая рамка */
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -96,7 +96,7 @@ h2 {
     border-radius: 50%;
     overflow: hidden;
     margin-right: 15px;
-    border: 2px solid #4CAF50;
+    border: 2px solid #64b5f6; /* Нежно-голубая рамка для аватара */
 }
 
 .ad-avatar img {
@@ -108,7 +108,7 @@ h2 {
 .ad h3 {
     font-size: 1.2em;
     margin: 0;
-    color: #4CAF50;
+    color: #64b5f6; /* Нежно-голубой цвет для заголовков объявлений */
 }
 
 .ad p {
@@ -131,7 +131,7 @@ h2 {
 }
 
 .ad-actions a, .ad-actions button {
-    background-color: #4CAF50;
+    background-color: #64b5f6; /* Нежно-голубой цвет для кнопок */
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -143,11 +143,11 @@ h2 {
 }
 
 .ad-actions a:hover, .ad-actions button:hover {
-    background-color: #45a049;
+    background-color: #42a5f5; /* Темнее нежно-голубой при наведении */
 }
 
 footer {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
+    background: linear-gradient(135deg, #64b5f6, #42a5f5); /* Градиент для футера */
     color: #fff;
     text-align: center;
     padding: 10px 20px;
