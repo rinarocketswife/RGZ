@@ -87,6 +87,7 @@ button:hover {
 }
 
 .ad-content {
+    display: block !important;
     flex: 1;
 }
 
