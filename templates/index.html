@@ -25,35 +25,35 @@
 
     <main>
         {% for ad in ads %}
-            <article class="ad-container">
-                <div class="ad-header">
-                    <div class="ad-avatar">
-                        <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '') if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
-                    </div>
-                    <div class="ad-title">{{ ad.title }}</div>
+        <article class="ad-container">
+            <div class="ad-header">
+                <div class="ad-avatar">
+                    <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '') if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
                 </div>
-                <div class="ad-content">
-                    <div class="ad-text">{{ ad.text }}</div>
-                    {% if ad.image %}
-                        <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
-                    {% endif %}
-                </div>
-                <div class="ad-info">
-                    <p>Автор: {{ ad.author_name }}</p>
-                    {% if session.user_id %}
-                        <p>Email автора: {{ ad.author_email }}</p>
-                    {% endif %}
-                    <p>Дата создания: {{ ad.created_at }}</p>
-                </div>
-                {% if session.user_id == ad.author_id or session.role == 'admin' %}
+                <div class="ad-title">{{ ad.title }}</div>
+            </div>
+            <div class="ad-content">
+                <div class="ad-text">{{ ad.text }}</div>
+                {% if ad.image %}
+                    <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
+                {% endif %}
+            </div>
+            <div class="ad-info">
+                <p>Автор: {{ ad.author_name }}</p>
+                {% if session.user_id %}
+                    <p>Email автора: {{ ad.author_email }}</p>
+                {% endif %}
+                <p>Дата создания: {{ ad.created_at }}</p>
+            </div>
+            {% if session.user_id == ad.author_id or session.role == 'admin' %}
                 <div class="ad-actions">
                     <a href="{{ url_for('edit_ad', ad_id=ad.id) }}" class="edit-button">Редактировать</a>
                     <form action="{{ url_for('delete_ad', ad_id=ad.id) }}" method="post" style="display:inline;">
                         <button type="submit" class="delete-button">Удалить</button>
                     </form>
                 </div>
-                {% endif %}
-            </article>
+            {% endif %}
+        </article>
         {% endfor %}
     </main>
 
