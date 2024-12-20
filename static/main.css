@@ -6,14 +6,21 @@ body {
     background: linear-gradient(135deg, #e6f7ff, #cceeff); /* Нежно-голубой градиент */
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
+/* Шапка */
 header {
     background: linear-gradient(135deg, #64b5f6, #42a5f5); /* Градиент для шапки */
     color: #fff;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 header h1 {
@@ -44,9 +51,11 @@ nav ul li a:hover {
     color: #bbdefb; /* Светло-голубой при наведении */
 }
 
+/* Основной контент */
 main {
     padding: 20px;
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -146,14 +155,88 @@ h2 {
     background-color: #42a5f5; /* Темнее нежно-голубой при наведении */
 }
 
+/* Стили для формы */
+form {
+    background-color: #fff;
+    border: 1px solid #bbdefb; /* Светло-голубая рамка */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #64b5f6; /* Нежно-голубой цвет для текста */
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbdefb; /* Светло-голубая рамка */
+    border-radius: 5px;
+    font-size: 1em;
+    color: #555;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group input[type="file"]:focus {
+    border-color: #64b5f6; /* Нежно-голубая рамка при фокусе */
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn {
+    background-color: #64b5f6; /* Нежно-голубой цвет для кнопок */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #42a5f5; /* Темнее нежно-голубой при наведении */
+}
+
+.back-link {
+    color: #64b5f6; /* Нежно-голубой цвет для ссылок */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #42a5f5; /* Темнее нежно-голубой при наведении */
+}
+
+/* Футер */
 footer {
     background: linear-gradient(135deg, #64b5f6, #42a5f5); /* Градиент для футера */
     color: #fff;
     text-align: center;
     padding: 10px 20px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    margin-top: 20px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
