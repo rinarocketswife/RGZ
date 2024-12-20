@@ -61,6 +61,10 @@ h2 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: calc(33.333% - 20px); /* Для отображения 3 объявлений в ряд */
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px; /* Минимальная высота для блоков объявлений */
 }
 
 .ad-header {
@@ -96,6 +100,7 @@ h2 {
     width: 100%;
     height: 200px; /* Фиксированная высота для изображения объявления */
     object-fit: cover; /* Масштабируем изображение, чтобы оно заполнило прямоугольник */
+    object-position: center; /* Центрируем изображение */
     border-radius: 5px;
     margin-bottom: 10px;
 }
