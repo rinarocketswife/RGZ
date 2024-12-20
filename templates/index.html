@@ -42,7 +42,7 @@
                     {% if session.user_id %}
                         <p>Email автора: {{ ad.author_email }}</p>
                     {% endif %}
-                    <p>Дата создания: {{ ad.created_at|format_date }}</p>
+                    <p>Дата создания: {{ ad.created_at }}</p>
                 </div>
                 {% if session.user_id == ad.author_id or session.role == 'admin' %}
                     <div class="ad-actions">
