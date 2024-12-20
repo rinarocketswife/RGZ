@@ -2,65 +2,60 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Доска объявлений</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <header>
-        <h1>Доска Объявлений</h1>
-        <div class="auth-panel">
-            {% if session.user_id %}
-                <p>Привет, {{ session.user_name }}! <a href="{{ url_for('logout') }}">Выйти</a></p>
-                {% if session.role == 'admin' %}
-                    <p><a href="{{ url_for('admin_users') }}">Управление пользователями</a></p>
+        <h1>Добро пожаловать на наш сайт!</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Главная</a></li>
+                {% if session.user_id %}
+                    <li><a href="{{ url_for('logout') }}">Выйти</a></li>
+                    <li><a href="{{ url_for('create_ad') }}">Создать объявление</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Войти</a></li>
+                    <li><a href="{{ url_for('register') }}">Зарегистрироваться</a></li>
                 {% endif %}
-            {% else %}
-                <p>
-                    <a href="{{ url_for('login') }}">Войти</a> |
-                    <a href="{{ url_for('register') }}">Зарегистрироваться</a>
-                </p>
-            {% endif %}
-        </div>
+                {% if is_admin() %}
+                    <li><a href="{{ url_for('admin_users') }}">Управление пользователями</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
 
     <main>
-        {% for ad in ads %}
-        <article class="ad-container">
-            <div class="ad-header">
-                <div class="ad-avatar">
-                    <img src="{{ url_for('static', filename=ad.author_avatar.replace('static/', '') if ad.author_avatar else 'uploads/default_avatar.png') }}" alt="Аватар автора">
+        <h2>Объявления</h2>
+        <div class="ads-container">
+            {% for ad in ads %}
+                <div class="ad">
+                    <h3>{{ ad.title }}</h3>
+                    <p>{{ ad.text }}</p>
+                    {% if ad.image %}
+                        <img src="{{ url_for('static', filename=ad.image) }}" alt="{{ ad.title }}" class="ad-image">
+                    {% endif %}
+                    <p>Автор: {{ ad.author_name }}</p>
+                    {% if ad.author_email %}
+                        <p>Email: {{ ad.author_email }}</p>
+                    {% endif %}
+                    {% if ad.author_avatar %}
+                        <img src="{{ url_for('static', filename=ad.author_avatar) }}" alt="{{ ad.author_name }}" class="avatar">
+                    {% endif %}
+                    {% if session.user_id and (session.user_id == ad.author_id or is_admin()) %}
+                        <a href="{{ url_for('edit_ad', ad_id=ad.id) }}">Редактировать</a>
+                        <form action="{{ url_for('delete_ad', ad_id=ad.id) }}" method="POST" style="display:inline;">
+                            <button type="submit">Удалить</button>
+                        </form>
+                    {% endif %}
                 </div>
-                <div class="ad-title">{{ ad.title }}</div>
-            </div>
-            <div class="ad-content">
-                <div class="ad-text">{{ ad.text }}</div>
-                {% if ad.image %}
-                    <img src="{{ url_for('static', filename=ad.image.replace('static/', '')) }}" alt="Фото объявления" class="ad-image">
-                {% endif %}
-            </div>
-            <div class="ad-info">
-                <p>Автор: {{ ad.author_name }}</p>
-                {% if session.user_id %}
-                    <p>Email автора: {{ ad.author_email }}</p>
-                {% endif %}
-                <p>Дата создания: {{ ad.created_at }}</p>
-            </div>
-            {% if session.user_id == ad.author_id or session.role == 'admin' %}
-                <div class="ad-actions">
-                    <a href="{{ url_for('edit_ad', ad_id=ad.id) }}" class="edit-button">Редактировать</a>
-                    <form action="{{ url_for('delete_ad', ad_id=ad.id) }}" method="post" style="display:inline;">
-                        <button type="submit" class="delete-button">Удалить</button>
-                    </form>
-                </div>
-            {% endif %}
-        </article>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </main>
 
     <footer>
-        {% if session.user_id %}
-            <a href="{{ url_for('create_ad') }}">Создать объявление</a>
-        {% endif %}
+        <p>&copy; 2023 Все права защищены.</p>
     </footer>
 </body>
 </html>
