@@ -58,6 +58,13 @@ main {
     flex-grow: 1; /* Контент растягивается, чтобы занять все свободное пространство */
 }
 
+h1 {
+    text-align: center;
+    color: #64b5f6; /* Нежно-голубой цвет для заголовков */
+    margin: 20px 0;
+    font-size: 2.5em;
+}
+
 h2 {
     margin-bottom: 20px;
     font-size: 2em;
@@ -226,6 +233,71 @@ form {
 
 .back-link:hover {
     color: #42a5f5; /* Темнее нежно-голубой при наведении */
+}
+
+/* Стили для таблицы */
+.admin-users-table {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.admin-users-table th,
+.admin-users-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #bbdefb; /* Светло-голубая граница */
+}
+
+.admin-users-table th {
+    background-color: #64b5f6; /* Нежно-голубой цвет для заголовков таблицы */
+    color: #fff;
+    font-weight: bold;
+}
+
+.admin-users-table tbody tr:nth-child(even) {
+    background-color: #f5faff; /* Светло-голубой фон для четных строк */
+}
+
+.admin-users-table tbody tr:hover {
+    background-color: #e0f2f7; /* Светло-голубой фон при наведении */
+}
+
+/* Стили для кнопок действий */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-link {
+    color: #64b5f6; /* Нежно-голубой цвет для ссылки */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.edit-link:hover {
+    color: #42a5f5; /* Темнее нежно-голубой при наведении */
+}
+
+.delete-button {
+    background-color: #ff6b6b; /* Красный цвет для кнопки удаления */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #ff4d4d; /* Темнее красный при наведении */
 }
 
 /* Футер */
