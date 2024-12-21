@@ -232,6 +232,7 @@ form {
 footer {
     display: block;
     height: 50px;
+    bottom: 0;
     background: linear-gradient(135deg, #64b5f6, #42a5f5); /* Градиент для футера */
     color: #fff;
     text-align: center;
